@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoofdstedenspel met Stephano</title>
+</head>
+
+<body>
+
+<script>
+
+const country = {
+            Nederland: "Amsterdam",
+            Portugal: "Lissabon",
+            Spanje: "Madrid",
+            Zweden: "Stockholm",
+            Verenigd_Koninkrijk: "Londen",
+            Cyprus: "Nicosia",
+            Lithuania: "Vilnius",
+            Tsjechië: "Praag",
+            Estland: "Tallin",
+            Hongarije: "Boedapest",
+            Oostenrijk: "Wenen",
+            Polen: "Warschau",
+            Italië: "Rome",
+            Luxemburg: "Luxemburg",
+            Belgie: "Brussel",
+            Denemarken: "Kopenhagen",
+            Finland: "Helsinki",
+            Frankrijk: "Parijs",
+            Slowakije: "Bratislava",
+            Slovenië: "Ljubljana",
+            Duitsland: "Berlijn",
+            Griekenland: "Athene",
+            Ierland: "Dublin",
+        }
+        let Hoofdsteden = Object.values(country).toString().replace(/,/g, "\n");
+        let Steden = Object.keys(country);
+        let Gebruikersinvoer = prompt("Hoeveel keer wil je spelen?");
+
+        if(sessionStorage.getItem("userInput") == null){
+            let sScore = 0;
+            sessionStorage.setItem("userInput", Gebruikersinvoer);
+            sessionStorage.setItem("score", sScore);
+        }
+        
+
+        function game(sScore){
+                let random = Math.floor(Math.random() * Steden.length);
+                let thisCountry = Steden[random];
+                let result = prompt(`Wat is de hoofdstad van deze land ${thisCountry}? \n${Hoofdsteden}`);
+
+                if (result.toLowerCase() === country[thisCountry].toLowerCase()) {
+                    alert("Goedzo dat is goed!");
+                    sScore++;
+                } else {
+                    alert("Slecht dat is niet goed!");
+                }
+                sScore = sessionStorage.setItem("score", sScore);
+            }
+
+            sUserInput = parseInt(sessionStorage.getItem("userInput")) + parseInt(Gebruikersinvoer);
+            sScore = sessionStorage.getItem("score");
+            //User input
+        for (let z = 0; z < Gebruikersinvoer; z++) {
+                game(sScore);
+        }
+
+            
+            sessionStorage.setItem("userInput",sUserInput);
+
+            alert(`Jou score is ${sessionStorage.getItem("score")}. Je hebt dit ${sessionStorage.getItem("userInput")} keer geprobeerd`);
+
+    </script>
+</body>
+
+</html>
